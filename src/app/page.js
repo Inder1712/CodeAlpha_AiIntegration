@@ -6,18 +6,17 @@ import { HfInference } from "@huggingface/inference";
 export default function Home() {
   const [input, setInput] = useState("");
   const [result, setResult] = useState("");
-  const [isLoading, setIsLoading] = useState(false); // State variable for controlling spinner
+  const [isLoading, setIsLoading] = useState(false);
   const inference = new HfInference("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");
   const model = "Salesforce/blip-image-captioning-large";
 
   async function generatePrediction() {
     if (!input.trim()) {
-      // Check if input is empty or contains only whitespace
-      alert("Please enter a valid input."); // Notify the user about the empty input
-      return; // Exit function
+      alert("Please enter a valid input.");
+      return;
     }
 
-    setIsLoading(true); // Set loading state to true
+    setIsLoading(true);
     try {
       const response = await fetch(input);
       const dataBlob = await response.blob();
@@ -32,9 +31,9 @@ export default function Home() {
       console.error("Error occurred:", error);
       alert(
         "An error occurred while generating prediction. Please try again later."
-      ); // Notify the user about the error
+      );
     } finally {
-      setIsLoading(false); // Set loading state to false after getting the result or encountering an error
+      setIsLoading(false);
     }
   }
 
@@ -43,7 +42,7 @@ export default function Home() {
   }
 
   function handleAddStock() {
-    console.log(input); // Placeholder for adding stock functionality
+    console.log(input);
   }
 
   return (
